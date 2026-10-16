@@ -12,5 +12,4 @@ jobs:
           persist-credentials: false
       - run: xcodebuild -version && swift --version
       - run: swift build -c release 2>&1 | tee build.log; test ${PIPESTATUS[0]} -eq 0
-      - run: swift build --build-tests 2>&1 | tail -40
-        continue-on-error: true
+      - run: swift test --filter "DataSettings|Password|Credential|TOTP" 2>&1 | tail -60
